@@ -4,12 +4,17 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Login
+      {{"Login" | translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button expand="block" color="danger" (click)="doGoogleLogin()">Google Login </ion-button>
+<ion-content class="contenido">
 
-  </ion-content>
+  <img class="logo" src="assets/SmashInicio.gif" >
+
+  <p class="titulo"> Smash Tier </p>
+
+  <ion-button class="loginButton" expand="block" color="danger" (click)="doGoogleLogin()">Google </ion-button>
+
+</ion-content>

@@ -1,14 +1,73 @@
 <ion-header>
   <ion-toolbar>
+    
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      {{"Home" | translate}}
     </ion-title>
   </ion-toolbar>
+
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)" style="background-color: #747474">
+  <ion-segment-button layout="icon-start" value="0" style="--padding-end:0px;--padding-start:0px">
+    <ion-icon name="star" ></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button layout="icon-start" value="1" style="--padding-end:0px;--padding-start:0px">
+    <ion-icon name="stats" ></ion-icon>
+  </ion-segment-button>
+
+</ion-segment>
+  <div id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]=" 
+  {'width.%': (100/this.tabs.length)}" style="margin-top:2px"></div>
+
 </ion-header>
 
 <ion-content>
+    <ion-slides #slides (ionSlideTransitionStart)="updateIndicatorPosition();updateCat(slides.getActiveIndex())"
+    (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition()" #SwipedTabsSlider
+    (ionSlideDrag)="animateIndicator($event)">
+      <ion-slide >
+        <ion-content class="fixed-scroll">   
+        <ion-list #dynamicList id="dynamicList">
+          <ion-card *ngFor="let item of listadoPanel;let i = index">
+              <ion-card-header>
+                  <preload-image [ratio]="{h:1,w:1}" [src]="item.Imagen">
+                  </preload-image>
+                  <ion-card-title>{{item.Nombre}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content >
+                  <p>{{item.Descripcion}}</p>
+                  <rating [(vrating)]="rating"  [IDpersonaje]="item.id" > </rating>
+              </ion-card-content>
+          </ion-card>
+        </ion-list> 
 
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Cargando mas personajes...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+        
+        </ion-content>
+      </ion-slide>
+
+      <ion-slide>
+          <ion-content class="fixed-scroll">
+              <ion-refresher (ionRefresh)="this.updateReq($event)">
+                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Actualizando"
+                  refreshingSpinner="null" refreshingText="">
+                  <img src="../../assets/Loading.gif" style="width:48px !important;margin:auto;position:relative;top:16px">
+                </ion-refresher-content>
+              </ion-refresher>
+
+              <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+
+        </ion-content>
+      </ion-slide>
+
+
+
+  </ion-slides>
 </ion-content>

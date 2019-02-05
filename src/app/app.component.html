@@ -8,14 +8,22 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
+          <ion-menu-toggle>
+            <ion-item>
+              <ion-icon slot="start" name="flag"></ion-icon>
+              <ion-label style="color: black"> {{"Translate" | translate}}</ion-label>
+              <ion-toggle (ionChange)="changeLang($event)"></ion-toggle>
             </ion-item>
           </ion-menu-toggle>
+          <!-- 
+          <ion-menu-toggle>
+            <ion-item (click)="doGoogleLogout()">
+              <ion-icon name="close-circle" slot="start"></ion-icon>
+              <ion-label>
+                Logout
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle> -->
         </ion-list>
       </ion-content>
     </ion-menu>

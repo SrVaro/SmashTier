@@ -4,6 +4,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { LoadingController, AlertController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage {
     public loadingController: LoadingController,
     private router: Router,
     private platform: Platform,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private translate: TranslateService
   ) { }
 
   async doGoogleLogin(){
@@ -39,9 +41,9 @@ export class LoginPage {
           picture: user.imageUrl
         })
         .then(() => {
+          this.router.navigate(["/home"]);
         }, (error) => {
           console.log(error);
-          this.router.navigate(["/list"]);
         })
         loading.dismiss();
       }, err => {
