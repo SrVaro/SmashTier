@@ -1,8 +1,7 @@
 {
-    "login":"Login",
-    "loging...":"Loging...",
+    "Login":"Login",
+    "Loging...":"Loging...",
     "Home":"Home",
     "Translate": "Translate",
-    "Characters loaded": "Characters loaded",
     "Loading": "Loading"
 }

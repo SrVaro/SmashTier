@@ -35,7 +35,7 @@ export function setTranslateLoader(http: any) {
       AngularFireModule.initializeApp(environment.firebaseConfig),
       AngularFirestoreModule,
       HttpClientModule,
-      TranslateModule.forRoot({  //Módulo de traducción
+      TranslateModule.forChild({  //Módulo de traducción
         loader: {
           provide: TranslateLoader, 
           useFactory: (setTranslateLoader), deps: [HttpClient]

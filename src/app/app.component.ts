@@ -34,12 +34,8 @@ export class AppComponent {
     this.initializeApp();
 
     platform.ready().then(() => {
-      //Here we will check if the user is already logged in
-      //because we don't want to ask users to log in each time they open the app
       this.nativeStorage.getItem('google_user')
       .then( data =>{
-        // user is previously logged and we have his data
-        // we will let him access the app
         this.router.navigate(["/home"]);
         this.splashScreen.hide();
       }, error =>{
@@ -50,26 +46,18 @@ export class AppComponent {
     });
   }
 
+  /**
+   * Metodo para cambiar de lenguaje en la aplicacion
+   * 
+   * @param e 
+   */
   changeLang(e){
     if(e.detail.checked){
-      this.translate.use("en");
-    }else{
       this.translate.use("es");
+    }else{
+      this.translate.use("en");
     }
   }
-
-  doGoogleLogout(){
-    this.googlePlus.logout()
-    .then(res =>{
-      //user logged out so we will remove him from the NativeStorage
-      this.nativeStorage.remove('google_user');
-      this.router.navigate(["/login"]);
-    }, err =>{
-      console.log(err);
-    })
-  }
-
-  
 
   initializeApp() {
     this.platform.ready().then(() => {

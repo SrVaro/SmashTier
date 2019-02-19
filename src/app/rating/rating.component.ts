@@ -85,11 +85,13 @@ export class RatingComponent {
       toast.present();
     }
 
-   
+  /**
+   * 
+   * @param NuevaPuntuacion 
+   * 
+   * Puntua al personaje, actualiz el personaje en la base de datos y en local
+   */
   rate(NuevaPuntuacion: number){
-
-    // function used to change the value of our rating 
-    // triggered when user, clicks a star to change the rating
 
     this.myloading = this.presentLoading(); 
 
@@ -123,18 +125,13 @@ export class RatingComponent {
 
   }
 
+  /**
+   * Devuelve el color de la estrella basado en el indice
+   * 
+   * @param index 
+   */
 
   getColor(index: number) {
-    /* function to return the color of a star based on what
-     index it is. All stars greater than the index are assigned
-     a grey color , while those equal or less than the rating are
-     assigned a color depending on the rating. Using the following criteria:
-  
-          1-2 stars: red
-          3 stars  : yellow
-          4-5 stars: green 
-    */
-
     if(this.isAboveRating(index)){
       return COLORS.GREY;
     }
@@ -154,10 +151,10 @@ export class RatingComponent {
 
   }
 
+  /**
+   * Devuelve si el index seleccionado esta por encima del rating actual
+   */
   isAboveRating(index: number): boolean {
-    // returns whether or not the selected index is above ,the current rating
-    // function is called from the getColor function.
-
     return index> this.vrating;
   }
 

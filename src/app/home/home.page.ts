@@ -52,8 +52,10 @@ export class HomePage {
       this.chartCargada = false;
     }
 
-
-    // Obtenemos los 3 personajes siguientes despues del ultimo almacenado    
+    /**
+     * Obtenemos los 3 personajes siguientes despues del ultimo almacenado (Se ejecuta al accionarse el infinity scroll)
+     * @param event 
+     */
     loadData(event) {
       setTimeout(() => {
         event.target.complete();
@@ -87,12 +89,6 @@ export class HomePage {
         
         
       }, 1000);
-
-      this.presentToastWithOptions(this.translate.instant("CharactersLoaded"));
-    }
-
-    toggleInfiniteScroll() {
-      this.ionInfiniteScroll.disabled = !this.ionInfiniteScroll.disabled;
     }
 
     async presentLoading() {
@@ -115,7 +111,6 @@ export class HomePage {
     ionViewDidEnter(){
 
       this.myloading = this.presentLoading(); 
-      console.log("ionViewDidEnter");
 
       this.listado=[];
 
@@ -149,11 +144,14 @@ export class HomePage {
 
     ionViewWillEnter() {
       this.category = "0";
-      this.SwipedTabsSlider.length().then(l => {  //no sería necesario aquí, solo en ngOnInit
+      this.SwipedTabsSlider.length().then(l => {
         this.ntabs = l;
       });
     }
 
+    /**
+     * Se cargan las puntuaciones de los personajes en la grafica (Se ejecuta al accionarse el refresher)
+     */
     updateReq(event?) {
     if (!event)  
 
@@ -198,13 +196,17 @@ export class HomePage {
             toolTipContent: "",
             dataPoints: [
               
-              { label: this.listadoPuntuaciones[0].Nombre, y: this.listadoPuntuaciones[0].Puntuacion, gdp: this.listadoPuntuaciones[0].Puntuacion, url: "uae.png" },
-              { label: this.listadoPuntuaciones[1].Nombre, y: this.listadoPuntuaciones[1].Puntuacion, gdp: this.listadoPuntuaciones[1].Puntuacion, url: "brazil.png"},
-              { label: this.listadoPuntuaciones[2].Nombre, y: this.listadoPuntuaciones[2].Puntuacion, gdp: this.listadoPuntuaciones[2].Puntuacion, url: "australia.png" },
-              { label: this.listadoPuntuaciones[3].Nombre, y: this.listadoPuntuaciones[3].Puntuacion, gdp: this.listadoPuntuaciones[3].Puntuacion, url: "skorea.png" },
-              { label: this.listadoPuntuaciones[4].Nombre, y: this.listadoPuntuaciones[4].Puntuacion, gdp: this.listadoPuntuaciones[4].Puntuacion, url: "israel.png" },
-              { label: this.listadoPuntuaciones[5].Nombre, y: this.listadoPuntuaciones[5].Puntuacion, gdp: this.listadoPuntuaciones[5].Puntuacion, url: "germany.png" },
-              { label: this.listadoPuntuaciones[6].Nombre, y: this.listadoPuntuaciones[6].Puntuacion, gdp: this.listadoPuntuaciones[6].Puntuacion, url: "japan.png" }
+              { label: this.listadoPuntuaciones[0].Nombre, y: this.listadoPuntuaciones[0].Puntuacion, gdp: this.listadoPuntuaciones[0].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[1].Nombre, y: this.listadoPuntuaciones[1].Puntuacion, gdp: this.listadoPuntuaciones[1].Puntuacion, url: ""},
+              { label: this.listadoPuntuaciones[2].Nombre, y: this.listadoPuntuaciones[2].Puntuacion, gdp: this.listadoPuntuaciones[2].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[3].Nombre, y: this.listadoPuntuaciones[3].Puntuacion, gdp: this.listadoPuntuaciones[3].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[4].Nombre, y: this.listadoPuntuaciones[4].Puntuacion, gdp: this.listadoPuntuaciones[4].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[5].Nombre, y: this.listadoPuntuaciones[5].Puntuacion, gdp: this.listadoPuntuaciones[5].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[6].Nombre, y: this.listadoPuntuaciones[6].Puntuacion, gdp: this.listadoPuntuaciones[6].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[7].Nombre, y: this.listadoPuntuaciones[7].Puntuacion, gdp: this.listadoPuntuaciones[7].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[8].Nombre, y: this.listadoPuntuaciones[8].Puntuacion, gdp: this.listadoPuntuaciones[8].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[9].Nombre, y: this.listadoPuntuaciones[9].Puntuacion, gdp: this.listadoPuntuaciones[9].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[10].Nombre, y: this.listadoPuntuaciones[10].Puntuacion, gdp: this.listadoPuntuaciones[10].Puntuacion, url: "" },
             ]
           }]
         });
@@ -227,6 +229,7 @@ export class HomePage {
       this.category = +this.category; //to int;
     });
   }
+  
   /* El método que permite actualizar el indicado cuando se cambia de slide*/
   updateIndicatorPosition() {
     this.SwipedTabsSlider.getActiveIndex().then(i => {
@@ -289,8 +292,12 @@ export class HomePage {
               { label: this.listadoPuntuaciones[2].Nombre, y: this.listadoPuntuaciones[2].Puntuacion, gdp: this.listadoPuntuaciones[2].Puntuacion, url: "australia.png" },
               { label: this.listadoPuntuaciones[3].Nombre, y: this.listadoPuntuaciones[3].Puntuacion, gdp: this.listadoPuntuaciones[3].Puntuacion, url: "skorea.png" },
               { label: this.listadoPuntuaciones[4].Nombre, y: this.listadoPuntuaciones[4].Puntuacion, gdp: this.listadoPuntuaciones[4].Puntuacion, url: "israel.png" },
-              { label: this.listadoPuntuaciones[5].Nombre, y: this.listadoPuntuaciones[5].Puntuacion, gdp: this.listadoPuntuaciones[5].Puntuacion, url: "germany.png" },
-              { label: this.listadoPuntuaciones[6].Nombre, y: this.listadoPuntuaciones[6].Puntuacion, gdp: this.listadoPuntuaciones[6].Puntuacion, url: "japan.png" }
+              { label: this.listadoPuntuaciones[5].Nombre, y: this.listadoPuntuaciones[5].Puntuacion, gdp: this.listadoPuntuaciones[5].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[6].Nombre, y: this.listadoPuntuaciones[6].Puntuacion, gdp: this.listadoPuntuaciones[6].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[7].Nombre, y: this.listadoPuntuaciones[7].Puntuacion, gdp: this.listadoPuntuaciones[7].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[8].Nombre, y: this.listadoPuntuaciones[8].Puntuacion, gdp: this.listadoPuntuaciones[8].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[9].Nombre, y: this.listadoPuntuaciones[9].Puntuacion, gdp: this.listadoPuntuaciones[9].Puntuacion, url: "" },
+              { label: this.listadoPuntuaciones[10].Nombre, y: this.listadoPuntuaciones[10].Puntuacion, gdp: this.listadoPuntuaciones[10].Puntuacion, url: "" },
             ]
           }]
         });
