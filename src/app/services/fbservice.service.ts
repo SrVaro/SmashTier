@@ -20,7 +20,7 @@ export class FBServiceService {
   /**
    * Recupera los 3 primeros personajes despues del que recibe por parametro 
    * 
-   * Returns a promise
+   * @returns un promise
    */
   leePersonajesConLimite(){ 
 
@@ -31,7 +31,7 @@ export class FBServiceService {
   /**
    * Recupera  todos los personajes ordenados por puntuación
    * 
-   * Returns a promise
+   * @returns un promise
    */
   leePersonajes(){ 
 
@@ -44,7 +44,7 @@ export class FBServiceService {
    * 
    * @param ultimoPersonaje 
    * 
-   * returns a promise
+   * @returns un promise
    */
   leePersonajesDespuesDe(ultimoPersonaje: any){ 
 
@@ -54,11 +54,11 @@ export class FBServiceService {
 
   /**
    * 
-   * Recupera todos los campos de un documento concreto identificado por la clave id de la colección 'personajes' Devuelve un Observable
+   * Recupera todos los campos de un documento concreto identificado por la clave id de la colección 'personajes'
    * 
    * @param id 
    * 
-   * Returns a promise
+   * @returns un promise
    */
   public getPJ(id) {
     return this.myCollection.doc(id).get();
@@ -68,10 +68,12 @@ export class FBServiceService {
  
   /**
    * Actualiza el campo (puntuacion) determinados por el objeto data en el documento 
-   * identificado por id de la colección 'personajes' Devuelve un Promise
+   * identificado por id de la colección 'personajes'
    * 
    * @param id 
    * @param data 
+   * 
+   * @returns un promise
    */
   actualizaPersonaje(id,data){ 
     
